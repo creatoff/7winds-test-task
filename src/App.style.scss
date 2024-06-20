@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+}
+
+#root {
+    display: flex;
+    flex: 1;
+    height: 100%;
+}

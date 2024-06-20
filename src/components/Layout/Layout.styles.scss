@@ -1,0 +1,133 @@
+.layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #27272a;
+    color: #fff;
+    height: 100%;
+    overflow: hidden;
+
+    &__body {
+        flex: 1;
+        display: flex;
+    }
+}
+
+.header {
+    flex: 0 0 44px;
+    display: flex;
+    padding: 0 20px;
+    gap: 30px;
+    border-bottom: 1px solid #414144;
+
+    &__menu {
+        display: flex;
+        align-self: stretch;
+        gap: 20px;
+        font-size: 14px;
+    }
+
+    &__menu-item {
+        display: flex;
+        align-items: center;
+        padding: 0 4px;
+        color: #a1a1aa;
+        text-decoration: none;
+
+        &_active {
+            position: relative;
+            color: #ffffff;
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                border-bottom: 2px solid #fff;
+            }
+        }
+    }
+
+    &__button {
+        align-self: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        color: #a1a1aa;
+    }
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar {
+    border-right: 1px solid #414144;
+}
+
+.tabs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &__list {
+        flex: 0;
+        display: flex;
+        border-bottom: 1px solid #414144;
+    }
+
+    &__list-item {
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        height: 44px;
+        font-size: 18px;
+        border-right: 1px solid #414144;
+    }
+
+    &__content {
+        flex: 1 1 auto;
+        background-color: #202124;
+        overflow-x: auto;
+        overflow-y: auto;
+        height: 0;
+    }
+}
+
+.category-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        height: 32px;
+        gap: 14px;
+    }
+}
+
+.project-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7px 0 20px;
+    height: 44px;
+    color: #a1a1aa;
+    border-bottom: 1px solid #414144;
+
+    &__title {
+        font-size: 14px;
+    }
+
+    &__description {
+        font-size: 10px;
+    }
+}
