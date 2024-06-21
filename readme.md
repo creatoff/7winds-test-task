@@ -1,24 +1,24 @@
-# Test task for interview at the Seven Winds Studio
+# Тестовое задание в Seven Winds Studio
 
-Table interface with client-side cache mutations. Built with RTK Query, icons from Material UI.
+Табличный интерфейс с обновлением кэша на клиенте. Сделано с помощью RTK Query, иконки из Material UI.
 
-## Features
+## Фичи
 
-- Optimistic updates
-- Native browser form check
+- Оптимистичные обновления
+- Валидация формы
 
-## Known bugs and issues
+## Известные баги
 
-- Struture line gap occurs when adding new row
-- Sending strings instead of numbers in requests
-- `Esc` button doesn't work on inputs of new row
-- Delete buttons arealways visible
+- При добавлении новой строки возникает разрыв в линии структуры
+- Отправка строк вместо чисел в запросах
+- Кнопка `Esc` не работает внутри новой строки
+- Кнопки удаления всегда видны
 
-## Possible improvements
+## Возможные улучшения
 
-- Insert new row into `Table` data instead of multiple `TableRow` components
-- Endpoints code generation from Open API schema
-- Server errors handling
-- Move API URL to .env config
-- Adaptive design
-- Add tests
+- Генерация кода ручек из схемы Open API
+- Вставка новой строки в данные компонента Table вместо нескольких компонентов TableRow
+- Обработка ошибок сервера
+- Переместить URL-адрес API в конфигурацию .env
+- Адаптивный дизайн
+- Добавить тесты
