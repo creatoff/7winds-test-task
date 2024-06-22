@@ -1,4 +1,4 @@
-import { TreeResponse } from "../../types";
+import { TreeResponse } from '../../types';
 
 export function flattenWithLevel(data: TreeResponse, level = 0) {
     let result: typeof data = [];

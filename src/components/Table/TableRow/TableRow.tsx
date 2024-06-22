@@ -1,17 +1,17 @@
-import { useState, useEffect, useId, useRef } from "react";
-import type { FlattenedRow } from "../../../types";
-import type { TableRowProps } from "./TableRow.types";
-import DescriptionIcon from "@mui/icons-material/Description";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { useState, useEffect, useId, useRef } from 'react';
+import type { FlattenedRow } from '../../../types';
+import type { TableRowProps } from './TableRow.types';
+import DescriptionIcon from '@mui/icons-material/Description';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const ROW_HEIGHT = 60;
 
 const fields: Array<keyof FlattenedRow> = [
-    "rowName",
-    "salary",
-    "equipmentCosts",
-    "overheads",
-    "estimatedProfit",
+    'rowName',
+    'salary',
+    'equipmentCosts',
+    'overheads',
+    'estimatedProfit',
 ] as const;
 
 export function TableRow({
@@ -36,7 +36,7 @@ export function TableRow({
     useEffect(() => {
         if (shouldFocus) {
             const inputElement = shouldFocus.querySelector(
-                "input:not([hidden])",
+                'input:not([hidden])',
             ) as HTMLInputElement;
 
             if (inputElement) {
@@ -62,7 +62,7 @@ export function TableRow({
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Escape") {
+        if (e.key === 'Escape') {
             onCancel();
         }
     };
@@ -79,7 +79,7 @@ export function TableRow({
 
             return {
                 ...prev,
-                [name]: name === "rowName" ? value : Number(value),
+                [name]: name === 'rowName' ? value : Number(value),
             };
         });
     };
@@ -131,7 +131,7 @@ export function TableRow({
                             {...(isFirstCell ? { ref: firstInputRef } : {})}
                             className="table__input"
                             form={formId}
-                            type={field === "rowName" ? "text" : "number"}
+                            type={field === 'rowName' ? 'text' : 'number'}
                             name={field}
                             defaultValue={String(rowData[field])}
                             onChange={(e) => handleInputChange(e)}
@@ -139,18 +139,14 @@ export function TableRow({
                             required
                         />
                     );
-                    content =
-                        isFirstCell ? (
-                            <form
-                                id={formId}
-                                onSubmit={handleFormSubmit}
-                            >
-                                {input}
-                                <input type="submit" hidden />
-                            </form>
-                        ) : (
-                            input
-                        );
+                    content = isFirstCell ? (
+                        <form id={formId} onSubmit={handleFormSubmit}>
+                            {input}
+                            <input type="submit" hidden />
+                        </form>
+                    ) : (
+                        input
+                    );
                 }
 
                 return (

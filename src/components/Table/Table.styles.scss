@@ -62,7 +62,6 @@
         position: relative;
         display: flex;
         align-items: center;
-    
     }
 
     &__actions-lines {
@@ -122,7 +121,7 @@
         display: flex;
     }
 
-    &:has(&__actions-toolbar:hover) &__actions-toolbar{
+    &:has(&__actions-toolbar:hover) &__actions-toolbar {
         background-color: #414144;
     }
 

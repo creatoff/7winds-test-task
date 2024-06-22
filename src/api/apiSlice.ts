@@ -1,17 +1,17 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type {
     FlattenedRow,
     RecalculatedRows,
     TreeResponse,
     TreeRow,
-} from "src/types";
-import { RowResponse } from "src/types";
+} from 'src/types';
+import { RowResponse } from 'src/types';
 
 const eID = 126417;
 
 export const apiSlice = createApi({
-    reducerPath: "api",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://185.244.172.108:8081" }),
+    reducerPath: 'api',
+    baseQuery: fetchBaseQuery({ baseUrl: 'http://185.244.172.108:8081' }),
     endpoints: (builder) => ({
         getTreeRows: builder.query<FlattenedRow[], void>({
             query: () => `/v1/outlay-rows/entity/${eID}/row/list`,
@@ -43,7 +43,7 @@ export const apiSlice = createApi({
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             query: ({ level, index, id, ...body }) => ({
                 url: `/v1/outlay-rows/entity/${eID}/row/create`,
-                method: "POST",
+                method: 'POST',
                 body: body,
             }),
             async onQueryStarted(
@@ -58,7 +58,7 @@ export const apiSlice = createApi({
 
                     if (!currentTreeRows) {
                         throw new Error(
-                            "No current tree rows found in the state",
+                            'No current tree rows found in the state',
                         );
                     }
 
@@ -66,7 +66,7 @@ export const apiSlice = createApi({
 
                     const findLastChildIndex = (
                         rows: FlattenedRow[],
-                        parentId: FlattenedRow["id"],
+                        parentId: FlattenedRow['id'],
                     ) => {
                         let lastIndex = -1;
                         for (let i = 0; i < rows.length; i++) {
@@ -98,7 +98,7 @@ export const apiSlice = createApi({
 
                     dispatch(
                         apiSlice.util.updateQueryData(
-                            "getTreeRows",
+                            'getTreeRows',
                             undefined,
                             () => optimisticTreeRows,
                         ),
@@ -123,13 +123,13 @@ export const apiSlice = createApi({
 
                     dispatch(
                         apiSlice.util.updateQueryData(
-                            "getTreeRows",
+                            'getTreeRows',
                             undefined,
                             () => updatedTreeRows,
                         ),
                     );
                 } catch (error) {
-                    console.error("Error creating tree row:", error);
+                    console.error('Error creating tree row:', error);
                 }
             },
         }),
@@ -138,7 +138,7 @@ export const apiSlice = createApi({
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             query: ({ id: rID, level, index, ...body }) => ({
                 url: `/v1/outlay-rows/entity/${eID}/row/${rID}/update`,
-                method: "POST",
+                method: 'POST',
                 body: { ...body },
             }),
             async onQueryStarted(
@@ -153,7 +153,7 @@ export const apiSlice = createApi({
 
                     if (!currentTreeRows) {
                         throw new Error(
-                            "No current tree rows found in the state",
+                            'No current tree rows found in the state',
                         );
                     }
 
@@ -167,7 +167,7 @@ export const apiSlice = createApi({
 
                     dispatch(
                         apiSlice.util.updateQueryData(
-                            "getTreeRows",
+                            'getTreeRows',
                             undefined,
                             () => optimisticTreeRows,
                         ),
@@ -195,13 +195,13 @@ export const apiSlice = createApi({
 
                     dispatch(
                         apiSlice.util.updateQueryData(
-                            "getTreeRows",
+                            'getTreeRows',
                             undefined,
                             () => updatedTreeRows,
                         ),
                     );
                 } catch (error) {
-                    console.error("Error updating tree rows:", error);
+                    console.error('Error updating tree rows:', error);
                 }
             },
         }),
@@ -209,7 +209,7 @@ export const apiSlice = createApi({
         deleteRow: builder.mutation({
             query: (rID) => ({
                 url: `/v1/outlay-rows/entity/${eID}/row/${rID}/delete`,
-                method: "DELETE",
+                method: 'DELETE',
             }),
             async onQueryStarted(
                 deletedId,
@@ -221,7 +221,7 @@ export const apiSlice = createApi({
                     selectGetTreeRowsResult(getState());
 
                 if (!currentTreeRows) {
-                    throw new Error("No current tree rows found in the state");
+                    throw new Error('No current tree rows found in the state');
                 }
 
                 function findDescendantIds(
@@ -252,7 +252,7 @@ export const apiSlice = createApi({
 
                 const patchResult = dispatch(
                     apiSlice.util.updateQueryData(
-                        "getTreeRows",
+                        'getTreeRows',
                         undefined,
                         () => optimisticallyUpdatedTreeRows,
                     ),
@@ -286,13 +286,13 @@ export const apiSlice = createApi({
 
                     dispatch(
                         apiSlice.util.updateQueryData(
-                            "getTreeRows",
+                            'getTreeRows',
                             undefined,
                             () => updatedTreeRows,
                         ),
                     );
                 } catch (error) {
-                    console.error("Error deleting tree row:", error);
+                    console.error('Error deleting tree row:', error);
 
                     patchResult.undo();
                 }

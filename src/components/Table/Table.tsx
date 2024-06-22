@@ -1,22 +1,22 @@
-import { useDebugValue, useState, useEffect } from "react";
-import { FlattenedRow } from "src/types";
+import { useDebugValue, useState, useEffect } from 'react';
+import { FlattenedRow } from 'src/types';
 import {
     useGetTreeRowsQuery,
     useCreateRowMutation,
     useUpdateRowMutation,
     useDeleteRowMutation,
-} from "src/api/apiSlice";
-import { TableRow } from "./TableRow";
-import { prepareData } from "src/utils/prepareData";
-import "./Table.styles.scss";
+} from 'src/api/apiSlice';
+import { TableRow } from './TableRow';
+import { prepareData } from 'src/utils/prepareData';
+import './Table.styles.scss';
 
 const tableHeader = [
-    "Уровень",
-    "Наименование работ",
-    "Основная з/п",
-    "Оборудование",
-    "Накладные расходы",
-    "Сметная прибыль",
+    'Уровень',
+    'Наименование работ',
+    'Основная з/п',
+    'Оборудование',
+    'Накладные расходы',
+    'Сметная прибыль',
 ];
 
 function getEmptyRowData() {
@@ -26,7 +26,7 @@ function getEmptyRowData() {
         id: null,
         parentId: null,
 
-        rowName: "",
+        rowName: '',
         salary: 0,
         equipmentCosts: 0,
         overheads: 0,
@@ -34,7 +34,10 @@ function getEmptyRowData() {
     };
 }
 
-const distanceToPrevRowWithSameLevel = (rows: FlattenedRow[], index: number) => {
+const distanceToPrevRowWithSameLevel = (
+    rows: FlattenedRow[],
+    index: number,
+) => {
     let distance = 1;
 
     const currentLevel = rows[index].level;
@@ -65,10 +68,10 @@ export function Table() {
 
     const [editingRowIndex, setEditingRowIndex] = useLabeledState<
         number | null
-    >("Row index", null);
+    >('Row index', null);
 
     const [editingRowData, setEditingRowData] =
-        useLabeledState<FlattenedRow | null>("Row data", null);
+        useLabeledState<FlattenedRow | null>('Row data', null);
 
     useEffect(() => {
         if (isSuccess && rows.length === 0) {
@@ -117,13 +120,13 @@ export function Table() {
 
     const handleAddRowBelow = (
         index: number,
-        level: FlattenedRow["level"],
-        parentId: FlattenedRow["id"],
+        level: FlattenedRow['level'],
+        parentId: FlattenedRow['id'],
     ) => {
         let nextIndexWithSameLevel = rows.length;
 
         for (let i = index + 1; i < rows.length; i++) {
-            const currentLevel = rows[i]["level"];
+            const currentLevel = rows[i]['level'];
             if (currentLevel <= level) {
                 nextIndexWithSameLevel = i;
                 break;
@@ -152,7 +155,7 @@ export function Table() {
     }
 
     if (isLoading) {
-        return "Загрузка...";
+        return 'Загрузка...';
     }
 
     return (

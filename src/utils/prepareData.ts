@@ -2,7 +2,7 @@ import {
     FlattenedRow,
     OutlayRowRequest,
     OutlayRowUpdateRequest,
-} from "../types";
+} from '../types';
 
 export function prepareData(
     row: FlattenedRow,

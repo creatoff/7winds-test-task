@@ -17,11 +17,11 @@ export type TreeRow = RowResponse & { child?: TreeRow[] };
 
 export type TreeResponse = TreeRow[];
 
-export type OutlayRowRequest = Omit<RowResponse, "child" | "id"> & {
+export type OutlayRowRequest = Omit<RowResponse, 'child' | 'id'> & {
     parentId: number;
 };
 
-export type OutlayRowUpdateRequest = Omit<OutlayRowRequest, "parentId">;
+export type OutlayRowUpdateRequest = Omit<OutlayRowRequest, 'parentId'>;
 
 type ExtraFields = {
     level: number;
@@ -31,14 +31,14 @@ type ExtraFields = {
 
 export type FlattenedRow = Omit<
     RowResponse,
-    | "child"
-    | "id"
-    | "machineOperatorSalary"
-    | "mainCosts"
-    | "materials"
-    | "mimExploitation"
-    | "supportCosts"
-    | "total"
+    | 'child'
+    | 'id'
+    | 'machineOperatorSalary'
+    | 'mainCosts'
+    | 'materials'
+    | 'mimExploitation'
+    | 'supportCosts'
+    | 'total'
 > &
     ExtraFields;
 

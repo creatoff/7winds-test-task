@@ -1,25 +1,25 @@
-import { ReactNode } from "react";
-import AppsIcon from "@mui/icons-material/Apps";
-import ReplyIcon from "@mui/icons-material/Reply";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import "./Layout.styles.scss";
+import { ReactNode } from 'react';
+import AppsIcon from '@mui/icons-material/Apps';
+import ReplyIcon from '@mui/icons-material/Reply';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import './Layout.styles.scss';
 
 const categoryList = [
-    "По проекту",
-    "Объекты",
-    "РД",
-    "МТО",
-    "График",
-    "МиМ",
-    "Рабочие",
-    "Капвложения",
-    "Бюджет",
-    "Финансирование",
-    "Панорамы",
-    "Камеры",
-    "Поручения",
-    "Контрагенты",
+    'По проекту',
+    'Объекты',
+    'РД',
+    'МТО',
+    'График',
+    'МиМ',
+    'Рабочие',
+    'Капвложения',
+    'Бюджет',
+    'Финансирование',
+    'Панорамы',
+    'Камеры',
+    'Поручения',
+    'Контрагенты',
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
