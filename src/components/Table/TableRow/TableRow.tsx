@@ -1,4 +1,4 @@
-import { useState, useEffect, useId } from "react";
+import { useState, useEffect, useId, useRef } from "react";
 import type { FlattenedRow } from "../../../types";
 import type { TableRowProps } from "./TableRow.types";
 import DescriptionIcon from "@mui/icons-material/Description";
@@ -15,21 +15,23 @@ const fields: Array<keyof FlattenedRow> = [
 ] as const;
 
 export function TableRow({
-    data,
+    data: rowData,
+    setRowData,
     onSave,
     onDelete,
     onAddRowBelow,
+    onEdit,
+    onCancel,
     isEditing,
-    setEditingRowId,
     distance = 0,
 }: TableRowProps) {
     const formId = useId();
 
-    const [rowData, setRowData] = useState<FlattenedRow>(data);
-    const { id, level } = rowData;
-    const { index } = data;
+    const { id, level, index } = rowData;
 
     const [shouldFocus, setShouldFocus] = useState<HTMLElement | null>(null);
+
+    const firstInputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         if (shouldFocus) {
@@ -46,31 +48,40 @@ export function TableRow({
     }, [shouldFocus]);
 
     useEffect(() => {
-        setRowData(data);
-    }, [data]);
+        if (isEditing && shouldFocus === null) {
+            firstInputRef.current?.focus();
+        }
+    }, [isEditing]);
 
     const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!isEditing) {
-            setEditingRowId(id);
             setShouldFocus(e.currentTarget);
+            setRowData(rowData);
+            onEdit();
         }
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Escape") {
-            setEditingRowId(null);
+            onCancel();
         }
     };
 
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onSave(rowData);
-        setEditingRowId(null);
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setRowData((prev) => ({ ...prev, [name]: value }));
+        setRowData((prev) => {
+            if (prev === null) return null;
+
+            return {
+                ...prev,
+                [name]: name === "rowName" ? value : Number(value),
+            };
+        });
     };
 
     const handleClickAdd = () => onAddRowBelow();
@@ -110,27 +121,29 @@ export function TableRow({
             </td>
             {fields.map((field, index) => {
                 let content = null;
+                const isFirstCell = index === 0;
 
                 if (!isEditing) {
                     content = String(rowData[field]);
                 } else {
                     const input = (
                         <input
+                            {...(isFirstCell ? { ref: firstInputRef } : {})}
                             className="table__input"
                             form={formId}
                             type={field === "rowName" ? "text" : "number"}
                             name={field}
                             defaultValue={String(rowData[field])}
                             onChange={(e) => handleInputChange(e)}
+                            onKeyDown={handleKeyDown}
                             required
                         />
                     );
                     content =
-                        index === 0 ? (
+                        isFirstCell ? (
                             <form
                                 id={formId}
                                 onSubmit={handleFormSubmit}
-                                onKeyDown={handleKeyDown}
                             >
                                 {input}
                                 <input type="submit" hidden />
