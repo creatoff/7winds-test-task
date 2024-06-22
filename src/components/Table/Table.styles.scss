@@ -56,4 +56,77 @@
             border-color: #7890b2;
         }
     }
+
+    &__actions {
+        align-self: stretch;
+        position: relative;
+        display: flex;
+        align-items: center;
+    
+    }
+
+    &__actions-lines {
+        content: "";
+        position: absolute;
+        display: block;
+        border-left: 1px solid #c6c6c6;
+        border-bottom: 1px solid #c6c6c6;
+        width: 24px;
+        height: 60px;
+        transform: translate(-6px, -50%);
+    }
+
+    &__actions-toolbar {
+        position: relative;
+        display: flex;
+        gap: 2px;
+        padding: 2px;
+        border-radius: 6px;
+        z-index: 1;
+    }
+
+    &__actions-button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #7890b2;
+        border-radius: 4px;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: #202124;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            z-index: -1;
+        }
+
+        &_delete {
+            color: #df4444;
+            visibility: hidden;
+        }
+    }
+
+    &__actions-toolbar:hover &__actions-button_delete {
+        display: flex;
+    }
+
+    &:has(&__actions-toolbar:hover) &__actions-toolbar{
+        background-color: #414144;
+    }
+
+    &:has(&__actions-toolbar:hover) &__actions-button_delete {
+        visibility: visible;
+    }
 }

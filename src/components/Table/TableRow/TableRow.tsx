@@ -1,7 +1,6 @@
 import { useState, useEffect, useId } from "react";
 import type { FlattenedRow } from "../../../types";
 import type { TableRowProps } from "./TableRow.types";
-import "./TableRow.styles.scss";
 import DescriptionIcon from "@mui/icons-material/Description";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -82,25 +81,25 @@ export function TableRow({
         <tr className="table__row">
             <td className="table__cell table__cell_first">
                 <div
-                    className="actions"
-                    style={{ left: `${level > 0 ? level * 20 : 0}px` }}
+                    className="table__actions"
+                    style={{ marginLeft: `${level > 0 ? level * 20 : 0}px` }}
                 >
                     {index > 0 && (
                         <div
-                            className="actions__lines"
+                            className="table__actions-lines"
                             style={{ height: `${distance * ROW_HEIGHT}px` }}
                         ></div>
                     )}
-                    <div className="actions__toolbar">
+                    <div className="table__actions-toolbar">
                         <button
-                            className="actions__button"
+                            className="table__actions-button"
                             onClick={() => handleClickAdd()}
                             disabled={isEditing}
                         >
                             <DescriptionIcon sx={{ fontSize: 20 }} />
                         </button>
                         <button
-                            className="actions__button actions__button_delete"
+                            className="table__actions-button table__actions-button_delete"
                             onClick={() => handleClickDelete()}
                             disabled={isEditing}
                         >
